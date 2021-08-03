@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import todo from "../images/TODO-1.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Get data from localstorage
 const getLocalItems = () => {
@@ -19,7 +21,16 @@ const Todo = () => {
 
   const addItem = () => {
     if (!inputData) {
-      alert("Add Item");
+      // --------------------------------------
+      toast.warn("Please Add Item", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else if (inputData && !toggleSubmit) {
       setItems(
         items.map((elem) => {
@@ -97,6 +108,18 @@ const Todo = () => {
                 onClick={addItem}
               ></i>
             )}
+            {/* ------------------------------- */}
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </div>
           <div className="showItems">
             {items.map((elem) => {
